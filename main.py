@@ -11,9 +11,14 @@ def main():
     fetcher.load_from_file(filename, file_format='json')
     poems= fetcher.get_poems()
 
-    poem_generator= MarkovGenerator(poems, state_size= 3)
-    poem= poem_generator.generate_poem()
-    print(poem)
 
+    poem_generator= MarkovGenerator(poems, state_size= 4)
+    poem= poem_generator.generate_poem()
+    pl= poem_generator.check_plagiarism(poem)
+    print("PLAGARISED LINES: ")
+    print(pl)
+    print("Poem")
+    print(poem)
+        
 if __name__ == "__main__":
     main()

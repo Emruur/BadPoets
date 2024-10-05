@@ -1,0 +1,678 @@
+        Emily Dickinson
+
+tries=10000,
+max_overlap_ratio=0.4,  # Allow only up to 50% overlap
+max_overlap_total=3   # Allow overlap of up to 10 words
+
+##
+does not copy large texts but max_overlap_ratio is a bit restrictive so similar patterns emmerge
+##
+
+    ---------------------------------------
+    Generated Section: 'know it -- in the'
+    Original Section:  'know it -- And then'
+    Title of Original Poem: 'Going to Him! Happy letter!'
+    Similarity: 0.89
+
+    Generated Section: 'it -- in the Grave?'
+    Original Section:  'Mother -- in the Grave'
+    Title of Original Poem: 'He told a homely tale'
+    Similarity: 0.83
+    Plagarism Score: 0.06275184099207821
+    Poem:
+    You'll know it -- in the Grave?
+
+    --------------------------------------------
+    Generated Section: 'Too much of Heaven --'
+    Original Section:  'So much of Heaven has'
+    Title of Original Poem: 'So much of Heaven has gone from Earth'
+    Similarity: 0.81
+
+    Generated Section: '-- To look at the'
+    Original Section:  '-- To look at, like'
+    Title of Original Poem: 'I cried at Pity -- not at Pain --'
+    Similarity: 0.83
+    Plagarism Score: 0.08324380371566764
+    Poem:
+    Too much of Heaven -- To look at the Bell. I know I know I know it!
+
+    -------------------------------------------------
+    Generated Section: 'as the Sun -- upon'
+    Original Section:  '-- The Sun -- upon'
+    Title of Original Poem: 'Four Trees -- upon a solitary Acre --'
+    Similarity: 0.83
+
+    Generated Section: 'the Sun -- upon the'
+    Original Section:  'The Sun -- upon a'
+    Title of Original Poem: 'Four Trees -- upon a solitary Acre --'
+    Similarity: 0.83
+    Plagarism Score: 0.08352653928327007
+    Poem:
+    Pernicious as the Sun -- upon the stair! She did not -- It is Infinity.
+    ------------------------------------------------------
+
+    Generated Section: 'know it -- in the'
+    Original Section:  'know it -- And then'
+    Title of Original Poem: 'Going to Him! Happy letter!'
+    Similarity: 0.89
+    Plagarism Score: 0.07606680965320439
+    Poem:
+    I do not -- It is Infinity. I know I know I know it! And as the Sun -- It is Infinity. You'll know it -- in the ground.
+
+    -------------------------------------------------------
+    Generated Section: 'You'll know it from the'
+    Original Section:  'You'll know it by the'
+    Title of Original Poem: 'I lost a World -- the other day!'
+    Similarity: 0.86
+
+    Generated Section: 'it from the Lawn again.'
+    Original Section:  'to the Lawn again. So'
+    Title of Original Poem: 'We should not mind so small a flower'
+    Similarity: 0.82
+
+    Generated Section: 'from the Lawn again. She'
+    Original Section:  'to the Lawn again. So'
+    Title of Original Poem: 'We should not mind so small a flower'
+    Similarity: 0.84
+
+    Generated Section: 'the Lawn again. She did'
+    Original Section:  'the Lawn again. So spicy'
+    Title of Original Poem: 'We should not mind so small a flower'
+    Similarity: 0.81
+    Plagarism Score: 0.07779305510390748
+    Poem:
+    She did not -- It is Infinity. You'll know it from the Lawn again. She did not -- It is Infinity. Parting is all that I -- for me!
+
+    ----------------------------------------------------------------------------
+    Generated Section: 'How know it -- in'
+    Original Section:  'to know it -- And'
+    Title of Original Poem: 'Going to Him! Happy letter!'
+    Similarity: 0.82
+
+    Generated Section: 'know it -- in the'
+    Original Section:  'know it -- And then'
+    Title of Original Poem: 'Going to Him! Happy letter!'
+    Similarity: 0.89
+
+    Generated Section: 'it -- in the dark!'
+    Original Section:  'is in the dark! I'
+    Title of Original Poem: 'My wheel is in the dark!'
+    Similarity: 0.80
+
+    Generated Section: 'dark! Pernicious as the Sun'
+    Original Section:  'bar. Pernicious as the sunset'
+    Title of Original Poem: 'Through those old Grounds of memory,'
+    Similarity: 0.82
+    Plagarism Score: 0.07881669271818302
+    Poem:
+    How know it -- in the night! You'll know it -- in the dark! Pernicious as the Sun -- It is Infinity.
+
+    -------------------------------------------------------------------------
+    Generated Section: 'You'll know it from the'
+    Original Section:  'You'll know it by the'
+    Title of Original Poem: 'I lost a World -- the other day!'
+    Similarity: 0.86
+
+    Generated Section: 'it from the Lawn again.'
+    Original Section:  'to the Lawn again. So'
+    Title of Original Poem: 'We should not mind so small a flower'
+    Similarity: 0.82
+
+    Generated Section: 'from the Lawn again. I'
+    Original Section:  'to the Lawn again. So'
+    Title of Original Poem: 'We should not mind so small a flower'
+    Similarity: 0.84
+    Plagarism Score: 0.06722847614490281
+    Poem:
+    I know I know I know I know it! You'll know it from the Lawn again. I know I know I know it!
+    -------------------------------------------------------------------
+    Generated Section: 'know it -- in the'
+    Original Section:  'know it -- And then'
+    Title of Original Poem: 'Going to Him! Happy letter!'
+    Similarity: 0.89
+
+    Generated Section: 'How know it -- in'
+    Original Section:  'to know it -- And'
+    Title of Original Poem: 'Going to Him! Happy letter!'
+    Similarity: 0.82
+
+    Generated Section: 'know it -- in the'
+    Original Section:  'know it -- And then'
+    Title of Original Poem: 'Going to Him! Happy letter!'
+    Similarity: 0.89
+
+    Generated Section: 'it -- in the Grave?'
+    Original Section:  'Mother -- in the Grave'
+    Title of Original Poem: 'He told a homely tale'
+    Similarity: 0.83
+    Plagarism Score: 0.07957978817395207
+    Poem:
+    Parting is all that I -- for me! You'll know it -- in the ground. God -- I know I know it! How know it -- in the Grave?
+
+
+tries=20000,
+max_overlap_ratio=0.6,  # Allow only up to 50% overlap
+max_overlap_total=3   # Allow overlap of up to 10 words
+
+#reducing the ratio allows more freedom #
+
+
+    -----------------------------------------------
+
+    Generated Section: 'Wouldn't the Angels -- lone.'
+    Original Section:  'Wouldn't the Angels try me'
+    Title of Original Poem: 'Why -- do they shut Me out of Heaven?'
+    Similarity: 0.81
+
+    Generated Section: 'lone. Transport -- by the'
+    Original Section:  'passed. Transport -- by throe'
+    Title of Original Poem: 'Water, is taught by thirst.'
+    Similarity: 0.81
+
+    Generated Section: 'Transport -- by the Snow.'
+    Original Section:  'Transport -- by throe --'
+    Title of Original Poem: 'Water, is taught by thirst.'
+    Similarity: 0.82
+
+    Generated Section: 'Wouldn't the Angels -- lone.'
+    Original Section:  'Wouldn't the Angels try me'
+    Title of Original Poem: 'Why -- do they shut Me out of Heaven?'
+    Similarity: 0.81
+    Plagarism Score: 0.07726580306213472
+    Poem:
+    A something in the ground. Wouldn't the Angels -- lone. Transport -- by the Snow. Wouldn't the Angels -- lone. But, which is not bold.,,
+
+    -------------------------------------------------
+    Generated Section: 'bold. Transport -- by the'
+    Original Section:  'passed. Transport -- by throe'
+    Title of Original Poem: 'Water, is taught by thirst.'
+    Similarity: 0.81
+
+    Generated Section: 'Transport -- by the Snow.'
+    Original Section:  'Transport -- by throe --'
+    Title of Original Poem: 'Water, is taught by thirst.'
+    Similarity: 0.82
+
+    Generated Section: 'Wouldn't the Angels -- lone.'
+    Original Section:  'Wouldn't the Angels try me'
+    Title of Original Poem: 'Why -- do they shut Me out of Heaven?'
+    Similarity: 0.81
+    Plagarism Score: 0.08334898354956603
+    Poem:
+    But, which is not bold. Transport -- by the Snow. Wouldn't the Angels -- lone. When I was a dream. But, which is not bold.
+
+
+
+tries=20000,
+max_overlap_ratio=0.8,  # Allow only up to 50% overlap
+max_overlap_total=3   # Allow overlap of up to 10 words
+
+    -----------------------------------------------
+
+    Generated Section: 'other day! Twice have I'
+    Original Section:  'the sod. Twice have I'
+    Title of Original Poem: 'I never lost as much but twice'
+    Similarity: 0.82
+    Plagarism Score: 0.08766871826366371
+    Poem:
+    For thee to die! Among the other day! Twice have I -- for me! For thee to die! But, which is not bold.
+
+    --------------------------------------------
+    Generated Section: '-- and Company. Then --'
+    Original Section:  '-- and Company. The Door'
+    Title of Original Poem: 'A Door just opened on a street --'
+    Similarity: 0.85
+    Plagarism Score: 0.08166477377427347
+    Poem:
+    How Human Nature feels. For thee to die! The Moon -- and Company. Then -- on the Tide! How Human Nature feels.
+
+    ------------------------------------
+    Generated Section: 'to die! For thee to'
+    Original Section:  'are done! For thee to'
+    Title of Original Poem: 'Summer for thee, grant I may be'
+    Similarity: 0.80
+
+    Generated Section: 'You'll know it from the'
+    Original Section:  'You'll know it by the'
+    Title of Original Poem: 'I lost a World -- the other day!'
+    Similarity: 0.86
+    Plagarism Score: 0.08062512076481837
+    Poem:
+    For thee to die! For thee to die! You'll know it from the Hall? A Paradise -- is Astrology. Oftener by the Snow.
+    --------------------------------------------------
+    No plagiarism detected.
+    Plagarism Score: 0.0777838410898986
+    Poem:
+    How Human Nature feels. How Human Nature feels. You'll know it -- in White! Oftener by the Snow. How Human Nature feels.
+
+    ---------------------------------------------------
+    Generated Section: 'Dying in the dark! A'
+    Original Section:  'is in the dark! I'
+    Title of Original Poem: 'My wheel is in the dark!'
+    Similarity: 0.81
+    Plagarism Score: 0.08274898363663158
+    Poem:
+    For thee to die! Dying in the dark! A something in the dark! But, which is not bold. The Moon -- and Men!
+
+    ----------------------------------------------------
+    Generated Section: 'Transport -- by the Snow.'
+    Original Section:  'Transport -- by throe --'
+    Title of Original Poem: 'Water, is taught by thirst.'
+    Similarity: 0.82
+    Plagarism Score: 0.0826873795783228
+    Poem:
+    Dying in the dark! Transport -- by the Snow. I -- too loud? Among the other day! For thee to die!
+
+    ----------------------------------------------------
+    Generated Section: 'to die! Wouldn't the Angels'
+    Original Section:  'a Bird! Wouldn't the Angels'
+    Title of Original Poem: 'Why -- do they shut Me out of Heaven?'
+    Similarity: 0.85
+
+    Generated Section: 'die! Wouldn't the Angels --'
+    Original Section:  'a Bird! Wouldn't the Angels'
+    Title of Original Poem: 'Why -- do they shut Me out of Heaven?'
+    Similarity: 0.81
+
+    Generated Section: 'Wouldn't the Angels -- lone.'
+    Original Section:  'Wouldn't the Angels try me'
+    Title of Original Poem: 'Why -- do they shut Me out of Heaven?'
+    Similarity: 0.81
+    Plagarism Score: 0.07473853442829598
+    Poem:
+    For thee to die! Wouldn't the Angels -- lone. Dying in the sod. How Human Nature feels. How Human Nature feels.
+
+    ------------------------------------------------------
+    No plagiarism detected.
+    Plagarism Score: 0.07255000546507907
+    Poem:
+    How Human Nature feels. Among the other day! How Human Nature feels. How Human Nature feels. For thee to die!
+
+    --------------------------------------------------
+    No plagiarism detected.
+    Plagarism Score: 0.07578880885140608
+    Poem:
+    A something in the ground. But, which is not bold. But, which is not bold. A something in the dark! Among the other day!
+
+    -------------------------------------------------
+
+        Willaim Blake
+
+tries=20000,
+max_overlap_ratio=0.7,  # Allow only up to 50% overlap
+max_overlap_total=3   # Allow overlap of up to 10 words
+
+
+    Generated Section: 'be! For Mercy, Pity, Peace.'
+    Original Section:  'For Mercy, Pity, Peace, and'
+    Title of Original Poem: 'Divine Image'
+    Similarity: 0.81
+    Plagarism Score: 0.044106414755341834
+    Poem:
+    Why a little child. Children of the poor. never can it mean? What can it be! For Mercy, Pity, Peace.
+
+    --------------------------------------------
+    Generated Section: 'can it be! What can'
+    Original Section:  'can it be! And can'
+    Title of Original Poem: 'On Another's Sorrow'
+    Similarity: 0.81
+
+    Generated Section: 'be! To Mercy, Pity, Peace.'
+    Original Section:  'To Mercy, Pity, Peace, and'
+    Title of Original Poem: 'Divine Image'
+    Similarity: 0.81
+
+    Generated Section: 'To Mercy, Pity, Peace. How'
+    Original Section:  'To Mercy, Pity, Peace, and'
+    Title of Original Poem: 'Divine Image'
+    Similarity: 0.85
+
+    Generated Section: 'Mercy, Pity, Peace. How can'
+    Original Section:  'Mercy, Pity, Peace. And all'
+    Title of Original Poem: 'Divine Image'
+    Similarity: 0.81
+
+    Generated Section: 'Peace. How can Lyca sleep?'
+    Original Section:  'child. How can Lyca sleep'
+    Title of Original Poem: 'The Little Girl Lost'
+    Similarity: 0.82
+    Plagarism Score: 0.038969299518484705
+    Poem:
+    What can it be! What can it be! To Mercy, Pity, Peace. How can Lyca sleep? Children of the vales rejoice?
+
+    -------------------------------------------------------
+
+    Generated Section: 'Though the morning sky. How'
+    Original Section:  'Though the morning was cold,'
+    Title of Original Poem: 'The Chimney-Sweeper'
+    Similarity: 0.80
+
+    Generated Section: 'sky. How can Lyca sleep?'
+    Original Section:  'child. How can Lyca sleep'
+    Title of Original Poem: 'The Little Girl Lost'
+    Similarity: 0.82
+
+    Generated Section: 'How can Lyca sleep? Why'
+    Original Section:  'How can Lyca sleep If'
+    Title of Original Poem: 'The Little Girl Lost'
+    Similarity: 0.86
+    Plagarism Score: 0.04081744635990996
+    Poem:
+    Though the morning sky. How can Lyca sleep? Why a little child. Queen of the night. Though the morning sky.
+
+    ----------------------------------------  ***********************
+    Generated Section: 'can it be! What can'
+    Original Section:  'can it be! And can'
+    Title of Original Poem: 'On Another's Sorrow'
+    Similarity: 0.81
+
+    Generated Section: 'can it be! When the'
+    Original Section:  'can it be! He doth'
+    Title of Original Poem: 'On Another's Sorrow'
+    Similarity: 0.81
+    Plagarism Score: 0.04328668209243271
+    Poem:
+    What can it be! What can it be! What can it be! When the night in disguise. How can Lyca sleep?
+
+Oscar Wilde
+
+    Generated Section: 'die. He does not die.'
+    Original Section:  'die. He does not die'
+    Title of Original Poem: 'The Ballad Of Reading Gaol'
+    Similarity: 0.98
+
+    Generated Section: 'He does not die. He'
+    Original Section:  'man does not die. He'
+    Title of Original Poem: 'The Ballad Of Reading Gaol'
+    Similarity: 0.87
+
+    Generated Section: 'does not die. He does'
+    Original Section:  'does not die. He does'
+    Title of Original Poem: 'The Ballad Of Reading Gaol'
+    Similarity: 1.00
+
+    Generated Section: 'not die. He does not'
+    Original Section:  'not die. He does not'
+    Title of Original Poem: 'The Ballad Of Reading Gaol'
+    Similarity: 1.00
+
+    Generated Section: 'die. He does not die.'
+    Original Section:  'die. He does not die'
+    Title of Original Poem: 'The Ballad Of Reading Gaol'
+    Similarity: 0.98
+
+    Generated Section: 'He does not die. He'
+    Original Section:  'man does not die. He'
+    Title of Original Poem: 'The Ballad Of Reading Gaol'
+    Similarity: 0.87
+
+    Generated Section: 'does not die. He does'
+    Original Section:  'does not die. He does'
+    Title of Original Poem: 'The Ballad Of Reading Gaol'
+    Similarity: 1.00
+
+    Generated Section: 'not die. He does not'
+    Original Section:  'not die. He does not'
+    Title of Original Poem: 'The Ballad Of Reading Gaol'
+    Similarity: 1.00
+
+    Generated Section: 'die. He does not die.'
+    Original Section:  'die. He does not die'
+    Title of Original Poem: 'The Ballad Of Reading Gaol'
+    Similarity: 0.98
+
+    Generated Section: 'He does not die. Stand'
+    Original Section:  'He does not die a'
+    Title of Original Poem: 'The Ballad Of Reading Gaol'
+    Similarity: 0.87
+    Plagarism Score: 0.012388892949846849
+    Poem:
+    He does not die. He does not die. He does not die. He does not die. Stand on the bier.
+
+        percy Bysshe Shelley
+
+tries=20000,
+max_overlap_ratio=0.7,  # Allow only up to 50% overlap
+max_overlap_total=3   #
+
+        Generated Section: 'Cruel was the same time.'
+        Original Section:  'rests at the same time.'
+        Title of Original Poem: 'Scenes From the Magico Prodigioso'
+        Similarity: 0.81
+
+        Generated Section: 'was the same time. When'
+        Original Section:  'at the same time. I'
+        Title of Original Poem: 'Scenes From the Magico Prodigioso'
+        Similarity: 0.81
+
+        Generated Section: 'SAME. CENCI: Bid him attend.'
+        Original Section:  'you. CENCI: Bid him attend'
+        Title of Original Poem: 'The Cenci.  a Tragedy in Five Acts'
+        Similarity: 0.85
+        Plagarism Score: 0.04769430385886293
+        Poem:
+        Cruel was the same time. When young and gentle. Metropolis of a ghost! SPIRIT OF THE SAME. CENCI: Bid him attend.
+
+        ----------------------------------
+
+
+tries=20000,
+max_overlap_ratio=0.4,  # Allow only up to 50% overlap
+max_overlap_total=3   #
+
+        Generated Section: 'I had thought before. How'
+        Original Section:  'men had thought before. And'
+        Title of Original Poem: 'Scene From 'tasso''
+        Similarity: 0.81
+
+        Generated Section: 'pale as she. PROCTO-PHANTASMIST: I'
+        Original Section:  'teasing us so. PROCTO-PHANTASMIST: I'
+        Title of Original Poem: 'Scenes From the Faust of Goethe'
+        Similarity: 0.80
+
+        Generated Section: 'as she. PROCTO-PHANTASMIST: I tell'
+        Original Section:  'us so. PROCTO-PHANTASMIST: I tell'
+        Title of Original Poem: 'Scenes From the Faust of Goethe'
+        Similarity: 0.93
+
+        Generated Section: 'she. PROCTO-PHANTASMIST: I tell thee'
+        Original Section:  'us so. PROCTO-PHANTASMIST: I tell'
+        Title of Original Poem: 'Scenes From the Faust of Goethe'
+        Similarity: 0.84
+
+        Generated Section: 'I tell thee truth. For'
+        Original Section:  'I'll tell thee truth. He'
+        Title of Original Poem: 'Rosalind and Helen.  a Modern Eclogue'
+        Similarity: 0.83
+        Plagarism Score: 0.04750001539354362
+        Poem:
+        I had thought before. How do I hear? One pale as she. PROCTO-PHANTASMIST: I tell thee truth. For thou art there!
+
+
+        -------------------------------------------------------------
+
+        Generated Section: 'Death is no more. You'
+        Original Section:  'Death is no foe to'
+        Title of Original Poem: 'The Daemon of the World'
+        Similarity: 0.82
+
+        Generated Section: 'And in the dead. At'
+        Original Section:  'not in the dead As'
+        Title of Original Poem: 'Rosalind and Helen.  a Modern Eclogue'
+        Similarity: 0.81
+
+        Generated Section: 'in the dead. At the'
+        Original Section:  'with the dead. And the'
+        Title of Original Poem: 'Sister Rosa: A Ballad'
+        Similarity: 0.83
+
+        Generated Section: 'dead. At the first day.'
+        Original Section:  'as at the first day.'
+        Title of Original Poem: 'Scenes From the Faust of Goethe'
+        Similarity: 0.84
+        Plagarism Score: 0.04901008072243455
+        Poem:
+        Death is no more. You should not dwell. There lay the boat. ULYSSES: And in the dead. At the first day.
+
+        ---------------------------------------------
+
+
+
+        Generated Section: 'ORSINO: You will see a'
+        Original Section:  'ORSINO: You will endure it'
+        Title of Original Poem: 'The Cenci.  a Tragedy in Five Acts'
+        Similarity: 0.83
+
+        Generated Section: 'It is the veil to'
+        Original Section:  'I wish her veil to'
+        Title of Original Poem: 'The Revolt of Islam. a Poem in Twelve Cantos'
+        Similarity: 0.86
+
+        Generated Section: 'is the veil to be'
+        Original Section:  'wish her veil to be'
+        Title of Original Poem: 'The Revolt of Islam. a Poem in Twelve Cantos'
+        Similarity: 0.89
+
+        Generated Section: 'veil to be reclaimed. If'
+        Original Section:  'Never to be reclaimed. The'
+        Title of Original Poem: 'Mont Blanc'
+        Similarity: 0.80
+
+        Generated Section: 'I may well divine. I'
+        Original Section:  'we may well divine. But'
+        Title of Original Poem: 'Prometheus Unbound.  a Lyrical Drama in Four Acts'
+        Similarity: 0.84
+        Plagarism Score: 0.047088353273381685
+        Poem:
+        ORSINO: You will see a dark reality. It is a God of human woe. It is the veil to be reclaimed. If all that I may well divine. I went forth as of burning crimes...
+
+
+
+Emily- William- Oscar
+
+        Generated Section: 'But as it is the'
+        Original Section:  'But as it hapt the'
+        Title of Original Poem: 'CHARMIDES'
+        Similarity: 0.82
+
+        Generated Section: 'as it is the Shepherd's'
+        Original Section:  'How sweet is the Shepherd's'
+        Title of Original Poem: 'The Shepherd'
+        Similarity: 0.80
+
+        Generated Section: 'it is the Shepherd's arm!'
+        Original Section:  'night Unto the Shepherd's arm!'
+        Title of Original Poem: 'Going to Heaven!'
+        Similarity: 0.84
+
+        Generated Section: 'as the Sun -- upon'
+        Original Section:  '-- The Sun -- upon'
+        Title of Original Poem: 'Four Trees -- upon a solitary Acre --'
+        Similarity: 0.83
+
+        Generated Section: 'the Sun -- upon the'
+        Original Section:  'The Sun -- upon a'
+        Title of Original Poem: 'Four Trees -- upon a solitary Acre --'
+        Similarity: 0.83
+        Plagarism Score: 0.08445395675127007
+        Poem:
+        But as it is the Shepherd's arm! And as the Sun -- upon the stair! And not be -- by the fire-light.
+
+
+        ----------------------------------------------------------------------
+
+        Generated Section: '-- To look at the'
+        Original Section:  '-- To look at, like'
+        Title of Original Poem: 'I cried at Pity -- not at Pain --'
+        Similarity: 0.83
+
+        Generated Section: 'moon in the pit? Or'
+        Original Section:  'is in the pit? Or'
+        Title of Original Poem: 'Thel's Motto'
+        Similarity: 0.83
+
+        Generated Section: 'in the pit? Or was'
+        Original Section:  'is in the pit? Or'
+        Title of Original Poem: 'Thel's Motto'
+        Similarity: 0.80
+
+        Generated Section: 'the pit? Or was it'
+        Original Section:  'in the pit? Or wilt'
+        Title of Original Poem: 'Thel's Motto'
+        Similarity: 0.81
+        Plagarism Score: 0.07349252973834564
+        Poem:
+        Heaven -- To look at the Forge! Not one of us -- like a man! Pernicious as the moon in the pit? Or was it -- in the Farm. I wandered through the night in disguise.
+
+        -------------------------------------------------------------------------
+
+        Generated Section: 'old folk. Through all their'
+        Original Section:  'not born. Through all their'
+        Title of Original Poem: 'Death leaves Us homesick, who behind,'
+        Similarity: 0.81
+
+        Generated Section: 'Tide! Descend O little cloud?'
+        Original Section:  'air. Descend O little cloud'
+        Title of Original Poem: 'The Book of Thel. Part I'
+        Similarity: 0.86
+
+        Generated Section: 'Descend O little cloud? A'
+        Original Section:  'air. Descend O little cloud'
+        Title of Original Poem: 'The Book of Thel. Part I'
+        Similarity: 0.85
+        Plagarism Score: 0.0675591274015288
+        Poem:
+        And the old folk. Through all their own. Stand on the Tide! Descend O little cloud? A something in the Grave?
+
+        -----------------------------------------------------------
+
+        Generated Section: 'not die. Wouldn't the Angels'
+        Original Section:  'a Bird! Wouldn't the Angels'
+        Title of Original Poem: 'Why -- do they shut Me out of Heaven?'
+        Similarity: 0.80
+
+        Generated Section: 'Wouldn't the Angels -- lone.'
+        Original Section:  'Wouldn't the Angels try me'
+        Title of Original Poem: 'Why -- do they shut Me out of Heaven?'
+        Similarity: 0.81
+
+        Generated Section: 'to die! He does not'
+        Original Section:  'not die. He does not'
+        Title of Original Poem: 'The Ballad Of Reading Gaol'
+        Similarity: 0.87
+
+        Generated Section: 'die! He does not die.'
+        Original Section:  'die. He does not die'
+        Title of Original Poem: 'The Ballad Of Reading Gaol'
+        Similarity: 0.93
+        Plagarism Score: 0.07489507306018138
+        Poem:
+        He does not die. Wouldn't the Angels -- lone. Why a little tract. For thee to die! He does not die.
+
+
+        ---------------------------------------------------------------------------
+        No plagiarism detected.
+        Plagarism Score: 0.06717554208200371
+        Poem:
+        God -- at the day. Or is it to none. Now like a little tract. Though the morning air. Through all their own.
+
+        ---------------------------------------------------------------------------
+        Generated Section: 'rain began. Through all their'
+        Original Section:  'not born. Through all their'
+        Title of Original Poem: 'Death leaves Us homesick, who behind,'
+        Similarity: 0.82
+
+        Generated Section: 'own. For Mercy, Pity, Peace.'
+        Original Section:  'For Mercy, Pity, Peace, and'
+        Title of Original Poem: 'Divine Image'
+        Similarity: 0.80
+        Plagarism Score: 0.07732881941461411
+        Poem:
+        What can it be! Is that the other day! For where'er the rain began. Through all their own. For Mercy, Pity, Peace.
+
+
+
+
+
+
+

@@ -73,6 +73,7 @@ class PoemFetcher:
             print(f"Error: Unsupported file format '{file_format}'. Please use 'json' or 'yaml'.")
 
     def load_from_file(self, filename, file_format='json'):
+        # If file exists, load and aggregate data
         if not os.path.exists(filename):
             print(f"Error: File {filename} does not exist.")
             return
@@ -86,14 +87,16 @@ class PoemFetcher:
                 else:
                     print(f"Error: Unsupported file format '{file_format}'. Please use 'json' or 'yaml'.")
                     return
-
-            self.poems = data.get('poems', [])
-            self.stats = data.get('statistics', {})
-            print(f"Data loaded from {filename} in {file_format.upper()} format.")
-            print(f"Loaded {len(self.poems)} poems.")
+            
+            # Aggregate poems
+            new_poems = data.get('poems', [])
+            self.poems.extend(new_poems)
+            print(f"Loaded {len(new_poems)} poems from {filename}.")
+            
+            # Recompute statistics to include new data
+            self.compute_statistics()
         except Exception as e:
             print(f"Error loading data from file: {e}")
 
     def get_poems(self):
         return self.poems
-

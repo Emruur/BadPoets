@@ -4,27 +4,36 @@ import difflib
 class MarkovGenerator:
     def __init__(self, poems, state_size=1):
         # Combine all poems into one text for training
-        self.text = "\n".join(line for poem in poems for line in poem["lines"])
-        self.model = markovify.Text(self.text, state_size=state_size)
+        if False:
+            self.text = "\n".join(line for poem in poems for line in poem["lines"])
+            self.model = markovify.Text(self.text, state_size=state_size)
+        else:
+            print("2222222222222222")
+            self.text = "\n".join(line for poem in poems for line in poem["lines"])
+            self.model = markovify.NewlineText(self.text, state_size=state_size)
+
         # Store the original poems as whole strings for plagiarism checking
         self.original_poems = [{"title": poem["title"], "text": " ".join(poem["lines"])} for poem in poems]
 
-    def generate_poem(self, length=5, start=None, strict=False):
+    def generate_poem(self, length=3, start=None, strict=False):
         poem_lines = []
         for _ in range(length):
             if start:
                 line = self.model.make_sentence_with_start(start, strict=strict)
                 start = None  # Use start only for the first line
             else:
-                line = self.model.make_sentence(
-                    tries=20000,
-                    max_overlap_ratio=1,  # Allow only up to 50% overlap
-                    max_overlap_total=3   # Allow overlap of up to 10 words
-                )
+                if True:
+                    line= self.model.make_sentence()
+                else:
+                    line = self.model.make_sentence(
+                        tries=20000,
+                        max_overlap_ratio=1,  # Allow only up to 50% overlap
+                        max_overlap_total=3   # Allow overlap of up to 10 words
+                    )
             if line:
                 poem_lines.append(line)
         
-        return " ".join(poem_lines)  # Concatenate lines to form a full poem
+        return "\n".join(poem_lines)  # Concatenate lines to form a full poem
     
     def check_plagiarism(self, generated_poem, ngram_size=5, similarity_threshold=0.8):
         plagiarized_sections = []

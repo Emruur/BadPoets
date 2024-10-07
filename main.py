@@ -18,16 +18,16 @@ def main():
     #fetcher.save_to_file(filename)
     ''''
     fetcher.load_from_file(filename_2, file_format='json')
-    fetcher.load_from_file(filename_3, file_format='json')
     fetcher.load_from_file(filename_4, file_format='json')
     '''
+    fetcher.load_from_file(filename_4, file_format='json')
     fetcher.load_from_file(filename_2, file_format='json')
     poems= fetcher.get_poems()
 
 
-    poem_generator= MarkovGenerator(poems, state_size= 1)
+    poem_generator= MarkovGenerator(poems, state_size= 2)
     poem= poem_generator.generate_poem()
-    #poem_generator.check_plagiarism(poem)
+    poem_generator.check_plagiarism(poem)
     #print(f"Plagarism Score: {poem_generator.overall_plagiarism_score(poem)}")
     print("Poem:")
     print(poem)

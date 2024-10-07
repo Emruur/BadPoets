@@ -22,12 +22,12 @@ class MarkovGenerator:
                 line = self.model.make_sentence_with_start(start, strict=strict)
                 start = None  # Use start only for the first line
             else:
-                if True:
-                    line= self.model.make_sentence()
+                if False:
+                    line= self.model.make_sentence(tries= 1000)
                 else:
                     line = self.model.make_sentence(
                         tries=20000,
-                        max_overlap_ratio=1,  # Allow only up to 50% overlap
+                        max_overlap_ratio=0.7,  # Allow only up to 50% overlap
                         max_overlap_total=3   # Allow overlap of up to 10 words
                     )
             if line:

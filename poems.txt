@@ -676,3 +676,54 @@ Emily- William- Oscar
 
 
 
+
+
+1. order
+
+Potential plagiarism detected:
+
+Generated Section: 'Water in God's Ear --'
+Original Section:  '-- in God's Ear --'
+Title of Original Poem: 'Prayer is the little implement'
+Similarity: 0.82
+
+Generated Section: 'in God's Ear -- Like'
+Original Section:  'in God's Ear -- If'
+Title of Original Poem: 'Prayer is the little implement'
+Similarity: 0.84
+
+Generated Section: '-- at Her motive for'
+Original Section:  'stay -- Her motive for'
+Title of Original Poem: 'I send you a decrepit flower'
+Similarity: 0.81
+
+Generated Section: 'at Her motive for me'
+Original Section:  '-- Her motive for the'
+Title of Original Poem: 'I send you a decrepit flower'
+Similarity: 0.83
+Poem:
+If Mother must come out to bear!
+Water in God's Ear --
+Like that made of Cloud -- at Her motive for me -- like mine --
+emreugur@Emres-MacBook-Air-2 ~/D/D/C/C/L/C/BadPoets (main)> python3.11 main.py
+Loaded 362 poems from poems/emily_dickinson_poems.json.
+Computed Statistics:
+Number of Poems: 362
+Mean Length of Poems (in words): 57.34254143646409
+Number of Unique Words: 4373
+2222222222222222
+Potential plagiarism detected:
+
+Generated Section: 'Degree Whose peasants are the'
+Original Section:  '-- Whose peasants are the'
+Title of Original Poem: 'The feet of people walking home'
+Similarity: 0.85
+
+Generated Section: 'Whose peasants are the bravest'
+Original Section:  '-- Whose peasants are the'
+Title of Original Poem: 'The feet of people walking home'
+Similarity: 0.80
+Poem:
+Summer Sky --
+By a Degree
+Whose peasants are the bravest

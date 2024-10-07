@@ -50,11 +50,6 @@ class PoemFetcher:
             'number_of_unique_words': num_unique_words
         }
 
-        print("Computed Statistics:")
-        print(f"Number of Poems: {num_poems}")
-        print(f"Mean Length of Poems (in words): {mean_length}")
-        print(f"Number of Unique Words: {num_unique_words}")
-
     def save_to_file(self, filename, file_format='json'):
         data = {
             'poems': self.poems,

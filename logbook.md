@@ -1,23 +1,28 @@
 # Bad Poets Society Logbook
 
 ## Table of Contents
-1. Poem Fetching
-    1.1 Stats
-2. Poem Generation With Markov Chains
-    2.1 Markov Chains
-        2.1.1 First-Order Markov Chains
-        2.1.2 Higher-Order Markov Chains
-    2.2 Implementation
-    2.3 Generating Poems
-        2.3.1 Generation with First-Order Chains
-        2.3.2 Generation with Second-Order Chains
-        2.3.3 Generation with Second and Third-Order Chains
-        2.3.4 New Creativity Assignment
-    2.4 Mixing Poets
-    2.5 Self Assessment
-        2.5.1 Strengths
-        2.5.2 Limitations
-        2.5.3 Improvements
+
+# Table of Contents
+
+1. [Poem Fetching](#1-poem-fetching)
+   - [1.1 Stats](#11-stats)
+2. [Poem Generation With Markov Chains](#2-poem-generation-with-markov-chains)
+   - [2.1 Markov Chains](#21-markov-chains)
+     - [2.1.1 First-Order Markov Chains](#211-first-order-markov-chains)
+     - [2.1.2 Higher-Order Markov Chains](#212-higher-order-markov-chains)
+   - [2.2 Implementation](#22-implementation)
+   - [2.3 Generating Poems](#23-generating-poems)
+     - [2.3.1 Generation with First-Order Chains](#231-generation-with-first-order-chains)
+     - [2.3.2 Generation with Second-Order Chains](#232-generation-with-second-order-chains)
+     - [2.3.3 Generation with Second and Third-Order Chains](#233-generation-with-second-and-third-order-chains)
+     - [2.3.4 New Creativity Assesment](#234-new-creativity-assesment)
+   - [2.4 Mixing Poets](#24-mixing-poets)
+   - [2.5 Self Assessment](#25-self-assessment)
+     - [2.5.1 Strengths](#251-strengths)
+     - [2.5.2 Limitations](#252-limitations)
+     - [2.5.3 Improvements](#253-improvements)
+
+
 
 ## 1. Poem Fetching
 
@@ -36,17 +41,17 @@ We went with the following authors
 ### 1.1 Stats
 We also record some stats per author
 
-        self.stats = {
-            'number_of_poems': num_poems,
-            'mean_length_of_poems': mean_length,
-            'number_of_unique_words': num_unique_words
-        }
+    self.stats = {
+    'number_of_poems': num_poems,
+    'mean_length_of_poems': mean_length,
+    'number_of_unique_words': num_unique_words
+    }
 
-with the intention of analyzing the creativity of the system based on the characterstics of the reference data
+to analyze the creativity of the system based on the characteristics of the reference data
 
 ## 2. Poem Generation With Markov Chains
 
-We first decided to go with fine tuning a LLM to generate poems as it is the most state of the art approach. However because of its simple nature and ease of implementation, we decided to use markov chains. 
+We first decided to go with fine tuning a LLM to generate poems as it is the most state-of-the-art approach. However, because of its simple nature and ease of implementation, we decided to use Markov chains. 
 
 ### 2.1 Markov chains
 
@@ -57,40 +62,40 @@ A first-order Markov chain treats each word in the reference database as a node 
 #### 2.1.2 Higher-Order Markov Chains
 A higher-order Markov chain operates similarly to a first-order chain but considers previous transitions to the current node. For example, a second-order Markov chain takes into account the two preceding words. In this case, the probability of a transition is represented as:
 
-$$
-P(w_3 \mid (w_1, w_2))
-$$
 
-where \( n \) is the number of unique words in the database, and the chain has \( n^2 \) possible states or nodes. Each node represents the likelihood of transitioning from a word pair \( (w_1, w_2) \) to a subsequent word \( w_3 \).
+    P(w_3 / (w_1, w_2))
 
-This enables the modelling the more complex relationships between words and hopefully come up with meaningful sentences.
+
+Where \( n \) is the number of unique words in the database, and the chain has \( n^2 \) possible states or nodes. Each node represents the likelihood of transitioning from a word pair \( (w_1, w_2) \) to a subsequent word \( w_3 \).
+
+This enables the modelling of the more complex relationships between words and hopefully comes up with meaningful sentences.
 
 ### 2.2 Implementation
 
-We first tried to do our own implementation in python since the algorithm is fairly simple where we record the probabilities in a n*n sparse matrix in training stage and then traverse the chain by "flipping a coin" in each node and following the transition based on the transition probabilities. However we quicky decided to go with an exisiting python implementation called **markovify** since its much more efficient and supports higher order chains out of the box. Also some of its features came in handy in the later stages where we tried to avoid the model just copying existing poems.
+We first tried to do our own implementation in Python since the algorithm is fairly simple where we record the probabilities in a n*n sparse matrix in the training stage and then traverse the chain by "flipping a coin" in each node and following the transition based on the transition probabilities. However, we quickly decided to go with an existing python implementation called **markovify** since its much more efficient and supports higher-order chains out of the box. Also, some of its features came in handy in the later stages where we tried to avoid the model just copying existing poems.
 
-With **markovify** implementing a markov chain is as simple as
+With **markovify** implementing a Markov chain is as simple as
 
     model = markovify.Text(text, state_size)
 
 ### 2.3 Generating Poems
 
-At first we tried to generate a poem with a single order markov chains with Emily Dickinson poems. The majority of the experimentation is made with emily dickinson poems. We then tested the system with the rest of poets with the optimum parameters obtained from the experimentation. 
-#### 2.3.1 Generation with first order chanins
+At first, we tried to generate a poem with a single order Markov chains with Emily Dickinson poems. The majority of the experimentation is done with Emily Dickinson's poems. We then tested the system with the rest of the poets with the optimum parameters obtained from the experimentation. 
+#### 2.3.1 Generation with first order chains
 
-We can get a sentence from the markow model like
+We can get a sentence from the Markov model like
 
     line= self.model.make_sentence()
 
-We first generated 3 sentences. Markovify internally handles the termination by treating terminal punctuations as a seperate termination node. A sentence is finished once we reach the termination node. 
+We first generated 3 sentences. Markovify internally handles the termination by treating terminal punctuations as a separate termination node. A sentence is finished once we reach the termination node. 
 
 **Generated Poem 1.1**: *The Moon or of Thee -- By innocent Surprise Cool us -- how Nature -- No more slowly The other, as yet no more -- Its unobtrusive Mass. No Trace -- Intact -- Tell Him -- And so bolder every step For Whom I stood -- the site of a pilgrim be Adjusted -- Prosperity -- And yet it -- They said the Wall In Nature feels. The Forest of thee to scan -- Which solemnizes me. Loose the backward leaves Us homesick, who ne'er so I stepped upon my strong trust -- With God.*
 
-The length of sentences were more than the average sentence line in the database. This is either a result of the randomness of the first order model or how the termination is treated with termination punctuation marks. Since the use of punctuation in the poems don't follow conventional use. So we tried trating end of lines as termination by 
+The length of sentences were more than the average sentence line in the database. This is either a result of the randomness of the first-order model or how the termination is treated with termination punctuation marks. Since the use of punctuation in the poems doesn't follow conventional use. So we tried treating end of lines as termination by 
 
     model = markovify.NewlineText(self.text, state_size=state_size)
 
-This resulted in better generations that matched the reference poems
+This resulted in better generations that matched the reference poems.
 
 **Generated Poem 1.2**:
 
@@ -116,9 +121,9 @@ This resulted in better generations that matched the reference poems
 
 *Is but One Claw --*
 
-These poems better matched our expectations. At this point the way we assesed the creativity of these systems were solely based on our opinions. We **desperately** searched for meaning in the generated lines. The word choice and the style of these poems resembled Emily Dickinson but as if she didn't speak english. 
+These poems better matched our expectations. At this point, the way we assessed the creativity of these systems was solely based on our opinions. We **desperately** searched for meaning in the generated lines. The word choice and the style of these poems resembled Emily Dickinson's but as if she didn't speak English. 
 
-With the search of getting better meaning out of the system we experimented with higher order markov chains.
+In the search for getting better meaning out of the system, we experimented with higher-order Markov chains.
 
 #### 2.3.2 Generation with second order chains
 
@@ -145,15 +150,16 @@ With the search of getting better meaning out of the system we experimented with
 
 *Just the Day will be*
 
-These poems started to make much more sense and started to make us feel something. As a result we were eager to try higher-order markov chains
+These poems started to make much more sense and started to make us feel something. As a result, we were eager to try higher-order Markov chains.
 
-#### 2.3.3 Generation with second and third order chains
+#### 2.3.3 Generation with second and third-order chains
 
-As we increased the state size the model struggled the generate sentences. We guess this is a result of the model being too complex for the amount of data. This resulted in model skipping some lines and giving some one liners. Which we liked! We also experimented with other terminaton strategies and lines per poem.
+As we increased the state size the model struggled the generate sentences. We guess this is a result of the model being too complex for the amount of data. This resulted in the model skipping some lines and giving some one-liners. Which we liked! We also experimented with other termination strategies and lines per poem.
 
 **Generated poem 2.4**
 
 *Presuming Me to be a Century --*
+
 *Till He be justified by Death -- but that was easy --*
 
 **Generated poem 2.5**
@@ -175,16 +181,16 @@ Pray gather me -- Anemone -- Thy flower -- be gay -- Her Lord -- away!
 
 *Angels, when the sun is hottest May be seen the Dews among, Stooping -- plucking -- sighing -- flying -- Parched the flowers they bear along*
 
-These poems especially 2.8 and 2.9 almost brought tear to our eyes. But we also started to have suspicions on the authenticity of these generated texts.
-To investigate the issue we implenented a plagirisim checker that compares the simiarity of n-grams of the generated text to the referencce database in a sliding window fashion.
+These poems especially 2.8 and 2.9 almost brought tears to our eyes. But we also started to have suspicions on the authenticity of these generated texts.
+To investigate the issue we implemented a plagiarism checker that compares the similarity of n-grams of the generated text to the reference database in a sliding window fashion.
 
-#### Here is the output of the system for a poem generated with a 4. order markov chain
+#### Here is the output of the system for a poem generated with a 4. order Markov chain
 
 **Poem 2.10**:
 As should sound -- to me -- so signal --
 The hue -- of it -- by Architect
 
-Potential plagiarism detected:
+    Potential plagiarism detected:
 
     Generated Section: 'As should sound -- to'
     Original Section:  '-- As should sound --'
@@ -251,16 +257,16 @@ Potential plagiarism detected:
     Title of Original Poem: 'Heaven is so far of the Mind'
     Similarity: 1.00
 
-as can be seen the system is mostly cheating by stitiching sections of poems together. In the example above it is getting sections from
+As can be seen, the system is mostly cheating by stitching sections of poems together. In the example above it is getting sections from
 - Teach Him -- When He makes the names
 - I prayed, at first, a little Girl
 - One Life of so much Consequence!
 - The name -- of it -- is "Autumn
 - Heaven is so far of the Mind
 
-However, to be fair it is stitching these sections in a rather meaningfull way and the outputs are very pleasing
+However, to be fair it is stitching these sections in a rather meaningful way and the outputs are very pleasing.
 
-#### Here is the output of the system for a poem generated with a 3. order markov chain
+#### Here is the output of the system for a poem generated with a 3. order Markov chain
 
 **Poem 2.11**:
 
@@ -407,7 +413,7 @@ However, to be fair it is stitching these sections in a rather meaningfull way a
 
 As can be seen from poems 2.11, 2.12 and their plagarism output. The system is still stitching different sections together. However, compared to the 4. order chain. It's stitching smaller sections and changes some words occasionally. 
 
-#### Here is the output of the system for a poem generated with a 2. order markov chain
+#### Here is the output of the system for a poem generated with a 2. order Markov chain
 
 **Poem 2.13**:
 
@@ -447,9 +453,9 @@ As can be seen from poems 2.11, 2.12 and their plagarism output. The system is s
     Title of Original Poem: 'The pretty Rain from those sweet Eaves'
     Similarity: 0.81
 
-The stitching theme still continues but the sections are smaller comapred to 3. order chains and more words in the sections are mutated. 
+The stitching theme still continues but the sections are smaller compared to 3. order chains and more words in the sections are mutated. 
 
-#### Here is the output of the system for a poem generated with a 1. order markov chain
+#### Here is the output of the system for a poem generated with a 1. order Markov chain
 
 **Poem 2.14:**
 
@@ -495,15 +501,15 @@ The stitching theme still continues but the sections are smaller comapred to 3. 
     Title of Original Poem: 'We pray -- to Heaven'
     Similarity: 0.80
 
-With first order chains the plagarism problem is mostly resolved it is not copying whole sections but uses small phrases from different poems
-However the meaning in the pomes are mostly lost. With second order chains meaning is still not compromised. Therefore 2. order chains seem to be the optimum point balancing meaning with originality.
+With first-order chains, the plagiarism problem is mostly resolved it is not copying whole sections but using small phrases from different poems.
+However, the meaning of the poems is mostly lost. With second order chains meaning is still not compromised. Therefore 2. order chains seem to be the optimum point balancing meaning with originality.
 
-#### New Creativity Assignment 2.3.4
+#### New Creativity Assesment 2.3.4
 
-Up to this point we assesed the creativity of the generated poems based on our oppinions. After this point we included the plagarism checker's output to the assesment pipeline.
-Therefore we don't think the poems generated by 2. 3. and 4. markov chains are "creative" since it is not novel. 1. order chains do produce novel output but the meaning is lost. Therefore we also don't consider the most of the output created by 1. order chains as creative.
-In order to get a creative system with our new definition, we decided to add some randomness to the 2. order markow chains so that it doesnt copy large texts but still produce meaningfull poems.
-Luckily markovify library provides us some parameters while generating 
+Up to this point, we assessed the creativity of the generated poems based on our tastes and opinions. After this point, we included the plagiarism checker's output in the assessment pipeline.
+Therefore we don't think the poems generated by 2. 3. and 4. Markov chains are "creative" since it is not novel. 1. order chains do produce novel output but the meaning is lost. Therefore we also don't consider most of the output created by 1. order chains as creative.
+In order to get a creative system with our new definition, we decided to add some randomness to the 2. order markow chains so that it doesn't copy large texts but still produces meaningful poems.
+Luckily markovify library provides us some parameters while generating. 
 
     line = self.model.make_sentence(
         tries,
@@ -511,8 +517,8 @@ Luckily markovify library provides us some parameters while generating
         max_overlap_total
     )
 
-sometimes the model will return None as a sentence if it can not return one within the specified constraints. We allow multiple retries to overcome that problem. max_overlap_ratio is the maximum allowed overlap between the words of a generated sentence and the words of any input sentence in the training data. maximum number of overlapping words allowed between a generated sentence and any sentence in the training data.
-We mostly utilized the max_overlap_total parameter and set it between 3-5. This did avoided the system making large copies. When we set it to 3 it copies sections of poems with max 3 words and it startd to copy from texts much less often. Here are some of the results.
+Sometimes the model will return None as a sentence if it can not return one within the specified constraints. We allow multiple retries to overcome that problem. max_overlap_ratio is the maximum allowed overlap between the words of a generated sentence and the words of any input sentence in the training data. A maximum number of overlapping words allowed between a generated sentence and any sentence in the training data.
+We mostly utilized the max_overlap_total parameter and set it between 3-5. This did prevent the system from making large copies. When we set it to 3 it copies sections of poems with max 3 words and it started to copy from texts much less often. Here are some of the results.
 
 **Poem 3.1**
 
@@ -557,8 +563,6 @@ We mostly utilized the max_overlap_total parameter and set it between 3-5. This 
     Original Section:  'bar. Pernicious as the sunset'
     Title of Original Poem: 'Through those old Grounds of memory,'
     Similarity: 0.82
-    Plagarism Score: 0.07881669271818302
-    Poem:
 
 **Poem: 3.3**
 
@@ -568,7 +572,7 @@ We mostly utilized the max_overlap_total parameter and set it between 3-5. This 
 
 *Close to the Air --*
 
-    Generated Section: '-- As eligible as the'
+    "Generated Section: '-- As eligible as the'
     Original Section:  'way As eligible as the'
     Title of Original Poem: 'Summer -- we all have seen --'
     Similarity: 0.88
@@ -576,7 +580,7 @@ We mostly utilized the max_overlap_total parameter and set it between 3-5. This 
     Generated Section: 'As eligible as the Sun'
     Original Section:  'way As eligible as the'
     Title of Original Poem: 'Summer -- we all have seen --'
-    Similarity: 0.82
+    Similarity: 0.82"
 
 **Poem: 3.4**
 
@@ -674,7 +678,7 @@ We mostly utilized the max_overlap_total parameter and set it between 3-5. This 
     Title of Original Poem: 'Peace is a fiction of our Faith --'
     Similarity: 0.84
 
-These generated poems fit within our definition of criteria and were rather pleasing to read. We tried to not overrestrict the model such as giving very little overlap possibility othervise the model would give repetitive poems such as:
+These generated poems fit within our definition of criteria and were rather pleasing to read. We tried to not over restrict the model such as giving very little overlap possibility otherwise the model would give repetitive poems such as:
 
 **Poem 3.6**
 
@@ -684,7 +688,7 @@ But, which is not bold. Transport -- by the Snow. Wouldn't the Angels -- lone. W
 
 A something in the ground. Wouldn't the Angels -- lone. Transport -- by the Snow. Wouldn't the Angels -- lone. But, which is not bold.,,
 
-In the end we found the settings below to be most creative
+In the end, we found the settings below to be the most creative
 
     line = self.model.make_sentence(
         tries=20000,
@@ -694,7 +698,7 @@ In the end we found the settings below to be most creative
 
 #### 2.4 Mixing Poets
 
-With the optimum settings we obtained from the experimentation above. We decide to apply to system with different poets and also create a system which generates poem with a mixed influence.
+With the optimum settings, we obtained from the experimentation above. We decided to apply to system with different poets and also create a system which generates poems with mixed influence.
 
 
 **Poem 4.1 William Blake**:
@@ -758,25 +762,25 @@ A dark and bloody,
 But I can find
 
 
-Generated Section: 'Or as the fabulous Thamondocana,--'
-Original Section:  'way, Beyond the fabulous Thamondocana,--'
-Title of Original Poem: 'The Witch of Atlas'
-Similarity: 0.81
+    Generated Section: 'Or as the fabulous Thamondocana,--'
+    Original Section:  'way, Beyond the fabulous Thamondocana,--'
+    Title of Original Poem: 'The Witch of Atlas'
+    Similarity: 0.81
 
-Generated Section: 'as the fabulous Thamondocana,-- A'
-Original Section:  'way, Beyond the fabulous Thamondocana,--'
-Title of Original Poem: 'The Witch of Atlas'
-Similarity: 0.82
+    Generated Section: 'as the fabulous Thamondocana,-- A'
+    Original Section:  'way, Beyond the fabulous Thamondocana,--'
+    Title of Original Poem: 'The Witch of Atlas'
+    Similarity: 0.82
 
-Generated Section: 'the fabulous Thamondocana,-- A dark'
-Original Section:  'the fabulous Thamondocana,-- Where, like'
-Title of Original Poem: 'The Witch of Atlas'
-Similarity: 0.83
+    Generated Section: 'the fabulous Thamondocana,-- A dark'
+    Original Section:  'the fabulous Thamondocana,-- Where, like'
+    Title of Original Poem: 'The Witch of Atlas'
+    Similarity: 0.83
 
-Generated Section: 'A dark and bloody, But'
-Original Section:  'been dark and bloody, Yet'
-Title of Original Poem: 'The Cenci.  a Tragedy in Five Acts'
-Similarity: 0.81
+    Generated Section: 'A dark and bloody, But'
+    Original Section:  'been dark and bloody, Yet'
+    Title of Original Poem: 'The Cenci.  a Tragedy in Five Acts'
+    Similarity: 0.81
 
 **Poem 4.5 Emily Dickinson - Oscar Wilde:**
 
@@ -831,7 +835,6 @@ Similarity: 0.81
 *How can Lyca sleep?*
 
 
-
     Generated Section: 'And the moon in the'
     Original Section:  'And the iron gin that'
     Title of Original Poem: 'The Ballad Of Reading Gaol'
@@ -880,18 +883,22 @@ Similarity: 0.81
     Title of Original Poem: 'Take your Heaven further on'
     Similarity: 0.81
 
-### 2.3 Self Assesment
+### 2.4 Art Generation
 
-#### 2.3.1 Strengths: 
+We chose some of the poems we enjoyed and used the stable diffusion model with the prompt
+
+### 2.5 Self Assesment
+
+#### 2.5.1 Strengths: 
 
 The system successfully generates poems that reflect the styles of Emily Dickinson, Oscar Wilde, and William Blake. In addition to generating creative, stylistically consistent poems, the system successfully integrates visual representations using the Art Generator. The images generated by the Stable Diffusion model enhance the understanding and appreciation of the poems by adding a visual dimension. This is particularly effective in capturing the symbolic and aesthetic elements present in poems by William Blake and Oscar Wilde
 The use of a Markov Chain with a state size of 2 ensures coherence while maintaining creativity.
 
-#### 2.3.2 Limitations:
+#### 2.5.2 Limitations:
 
 The plagiarism check reveals a few areas where the generated text is too similar to the original. Additionally, the system occasionally produces repetitive lines, such as "Though the morning air," indicating that the model might benefit from further refinement. While the visual art generated enhances the poetic experience, there are occasional mismatches between the abstractness of the poems and the concreteness of the images produced by the Art Generator. In some cases, the visual output doesn’t fully align with the deeper symbolic meaning of the poems.
 
-#### 2.3.3 Improvements
+#### 2.5.3 Improvements
 s: Future work could involve experimenting with different Markov Chain configurations or integrating a more advanced language model to reduce the likelihood of replication and improve the depth of the generated poems. Future work could involve refining the Art Generator to produce more realistic images that better capture the complexity of the poetry. Additionally, experimenting with different art styles and prompts could lead to more accurate visual representations.
 
 

@@ -4,13 +4,9 @@ import difflib
 class MarkovGenerator:
     def __init__(self, poems, state_size=1):
         # Combine all poems into one text for training
-        if False:
-            self.text = "\n".join(line for poem in poems for line in poem["lines"])
-            self.model = markovify.Text(self.text, state_size=state_size)
-        else:
-            print("2222222222222222")
-            self.text = "\n".join(line for poem in poems for line in poem["lines"])
-            self.model = markovify.NewlineText(self.text, state_size=state_size)
+
+        self.text = "\n".join(line for poem in poems for line in poem["lines"])
+        self.model = markovify.NewlineText(self.text, state_size=state_size)
 
         # Store the original poems as whole strings for plagiarism checking
         self.original_poems = [{"title": poem["title"], "text": " ".join(poem["lines"])} for poem in poems]
@@ -22,14 +18,11 @@ class MarkovGenerator:
                 line = self.model.make_sentence_with_start(start, strict=strict)
                 start = None  # Use start only for the first line
             else:
-                if False:
-                    line= self.model.make_sentence(tries= 1000)
-                else:
-                    line = self.model.make_sentence(
-                        tries=20000,
-                        max_overlap_ratio=0.7,  # Allow only up to 50% overlap
-                        max_overlap_total=3   # Allow overlap of up to 10 words
-                    )
+                line = self.model.make_sentence(
+                    tries=20000,
+                    max_overlap_ratio=0.7,  # Allow only up to 50% overlap
+                    max_overlap_total=4   # Allow overlap of up to 10 words
+                )
             if line:
                 poem_lines.append(line)
         
@@ -72,17 +65,3 @@ class MarkovGenerator:
         matcher = difflib.SequenceMatcher(None, text1, text2)
         return matcher.ratio()
 
-    def overall_plagiarism_score(self, generated_poem):
-        total_similarity = 0
-        
-        # Compare the generated poem to all original poems and calculate the average similarity
-        for orig_poem in self.original_poems:
-            similarity = self.calculate_similarity(generated_poem, orig_poem["text"])
-            total_similarity += similarity
-        
-        # Average similarity score
-        overall_score = total_similarity / len(self.original_poems)
-        
-        return overall_score
-
-       

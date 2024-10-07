@@ -1,40 +1,71 @@
-from ArtGenerator import StableDiffusionArtGenerator
+import os
 from PoemFetcher import PoemFetcher
 from MarkovChain import MarkovGenerator
 
-def main():
-    poet_name = "Percy Bysshe Shelley"
-    poet_name_2= "Emily Dickinson"
-    poet_name_3= "Oscar Wilde"
-    poet_name_4= "William blake"
+class BadPoets:
+    def __init__(self, poets):
+        # Convert single poet input to a list
+        if isinstance(poets, str):
+            poets = [poets]
+        self.poets = poets
+        self.poems = []
+        self.failed_poets = []
+        self.load_or_fetch_poems()
 
-    # Create an instance of PoemFetcher
-    fetcher = PoemFetcher(poet_name_2)
-    #fetcher.fetch_poems()
-    filename = f"poems/{poet_name.lower().replace(' ', '_')}_poems.json"
-    filename_2 = f"poems/{poet_name_2.lower().replace(' ', '_')}_poems.json"
-    filename_3 = f"poems/{poet_name_3.lower().replace(' ', '_')}_poems.json"
-    filename_4 = f"poems/{poet_name_4.lower().replace(' ', '_')}_poems.json"
-    #fetcher.save_to_file(filename)
-    ''''
-    fetcher.load_from_file(filename_2, file_format='json')
-    fetcher.load_from_file(filename_4, file_format='json')
-    '''
-    fetcher.load_from_file(filename_4, file_format='json')
-    fetcher.load_from_file(filename_2, file_format='json')
-    poems= fetcher.get_poems()
+    def load_or_fetch_poems(self):
+        # Ensure the poems directory exists
+        os.makedirs("poems", exist_ok=True)
 
+        for poet in self.poets:
+            filename = f"poems/{poet.lower().replace(' ', '_')}_poems.json"
+            fetcher = PoemFetcher(poet)
 
-    poem_generator= MarkovGenerator(poems, state_size= 2)
-    poem= poem_generator.generate_poem()
-    poem_generator.check_plagiarism(poem)
-    #print(f"Plagarism Score: {poem_generator.overall_plagiarism_score(poem)}")
-    print("Poem:")
-    print(poem)
+            try:
+                # Check if the poem file exists
+                if os.path.exists(filename):
+                    fetcher.load_from_file(filename, file_format='json')
+                else:
+                    # Attempt to fetch poems
+                    fetcher.fetch_poems()
+                    fetcher.save_to_file(filename)
+                    fetcher.load_from_file(filename)
+                
+            except Exception as e:
+                # If fetching/loading fails, record the poet name
+                self.failed_poets.append(poet)
+                print(f"Failed to fetch or load poems for {poet}: {str(e)}")
+        self.poems= fetcher.get_poems()
 
-    art_generator = StableDiffusionArtGenerator() 
-    generated_image = art_generator.generate_art(poem)
-    generated_image.show()
+    def generate_poem(self, state_size=2):
+        if not self.poems:
+            raise ValueError("No poems available to generate from. Check if the poets were correctly fetched.")
         
+        # Generate a poem using Markov chains
+        poem_generator = MarkovGenerator(self.poems, state_size=state_size)
+        poem = poem_generator.generate_poem()
+
+        poem_generator.check_plagiarism(poem)
+        return poem
+
+# Usage
 if __name__ == "__main__":
-    main()
+    # Example poets list
+    poets = ["Emily Dickinson", "NonExistent Poet", "William Blake"]
+    poets= "Emily Dickinson"
+
+    # Create an instance of BadPoets
+    bad_poets = BadPoets(poets)
+
+    # Check for failed poets
+    if bad_poets.failed_poets:
+        print("Failed to fetch poems for the following poets:")
+        print(", ".join(bad_poets.failed_poets))
+
+    # Generate a poem if any poems were successfully loaded/fetched
+    try:
+        poem = bad_poets.generate_poem()
+        print()
+        print("Generated Poem:")
+        print(poem)
+    except ValueError as ve:
+        print(ve)

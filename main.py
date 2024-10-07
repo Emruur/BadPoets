@@ -1,4 +1,4 @@
-from ArtGenerator import ArtGenerator
+from ArtGenerator import StableDiffusionArtGenerator
 from PoemFetcher import PoemFetcher
 from MarkovChain import MarkovGenerator
 
@@ -31,6 +31,10 @@ def main():
     #print(f"Plagarism Score: {poem_generator.overall_plagiarism_score(poem)}")
     print("Poem:")
     print(poem)
+
+    art_generator = StableDiffusionArtGenerator() 
+    generated_image = art_generator.generate_art(poem)
+    generated_image.show()
         
 if __name__ == "__main__":
     main()

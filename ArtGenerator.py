@@ -1,14 +1,35 @@
-class ArtGenerator:
-    def __init__(self, art_style: str):
-        self.art_style: str = art_style
-    
-    def generate_visual_art(self, poem: str) -> object:
+from diffusers import StableDiffusionPipeline
+import torch
+
+class StableDiffusionArtGenerator:
+    def __init__(self, model_id="CompVis/stable-diffusion-v1-4"):
         """
-        Generates visual art based on the given poem.
+        Initializes the Stable Diffusion pipeline.
+        
         Args:
-            poem: The poem text to base the visual art on.
-        Returns:
-            Image or visual representation of the poem.
+            model_id: The model ID for Stable Diffusion (from Hugging Face).
         """
-        # Implementation to create visual art
-        return None
+        self.pipe = StableDiffusionPipeline.from_pretrained(model_id)
+        self.pipe = self.pipe.to("cuda" if torch.cuda.is_available() else "cpu")
+
+    def generate_art(self, prompt: str):
+        """
+        Generates art based on the given prompt.
+
+        Args:
+            prompt: The text prompt to generate art from.
+
+        Returns:
+            A PIL Image object of the generated art.
+        """
+        image = self.pipe(prompt).images[0]
+        return image
+
+
+if __name__ == "__main__":
+    art_generator = StableDiffusionArtGenerator()
+    prompt = """
+    A peaceful sunset over a mountain range with glowing skies and calm waters
+    """
+    generated_image = art_generator.generate_art(prompt)
+    generated_image.show()
